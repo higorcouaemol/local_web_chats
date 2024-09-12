@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web Chats</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js" integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+
+    <main id="chats">
+        <section id="chats__center">
+
+            <div id="chats__center-list">
+                <div id="chats__center-list__center">
+
+                    <% for (const [key, value] of Object.entries(chats)) { %>
+
+                        <div class="chats__center-list__center-chat"><p><%= chats[key].name %> </p><p><%= chats[key].messages_quantity %> Messages</p></div>
+
+                    <% } %>
+
+                </div>
+            </div>
+
+            <div id="chats__center-join">
+                <form>
+
+                    <input type="text" name="user" id="user_id" placeholder="Join as...">
+
+                    <select name="chat_identifier" id="chat_identifier_id">
+
+                        <option value="chat_identifier">Chat</option>
+                    
+                        <% for (const [key, value] of Object.entries(chats)) { %> <option value="<%= chats[key].identifier %>"><%= chats[key].name %></option> <% } %>
+
+                    </select>
+
+                    <button type="button" onclick="join()">Join Chat</button>
+
+                </form>
+            </div>
+
+            <% if ((typeof chat !== 'undefined') && (typeof chat !== 'undefined')) { %>
+
+                <div id="chats__center-chat">
+                    <div id="chats__center-chat__i"><p>Chat <%= chat.name %> <%= chat.identifier %></p></div>
+    
+                    <div id="chats__center-chat__messages"></div>                
+    
+                    <div id="chats__center-chat__type">
+                        <form>
+    
+                            <input type="text" name="message" id="message_id" placeholder="Type a message...">
+    
+                        </form>
+                    </div>
+
+                    <script type="text/javascript">
+
+                        const m = { chat_identifier: '<%= chat.identifier %>', user: '<%= user %>' };
+
+                        const messages_div = document.getElementById('chats__center-chat__messages');
+
+                        const sio = io(`http://${window.location.host}/`);
+                        
+                        function create_message(user, message) 
+                        {
+
+                            const message_div     =          document.createElement('div');
+                            message_div.className = 'chats__center-chat__messages-message';
+
+                            const message_center_div     =                  document.createElement('div');
+                            message_center_div.className = 'chats__center-chat__messages-message__center';
+
+                            const message_content_p     =        document.createElement('p');
+                            message_content_p.innerHTML = `<span>${user}:</span> ${message}`;
+
+                            message_center_div.appendChild(message_content_p);
+                            message_div.appendChild(      message_center_div);
+
+                            messages_div.appendChild(message_div);
+
+                        }
+
+                        function new_message(message) 
+                        {
+
+                            if (!message) { alert('Type a message'); return; }
+
+                            const nm = { chat_identifier: m.chat_identifier, user: m.user, message: message };
+
+                            create_message(nm.user, nm.message);
+
+                            sio.emit('message', nm);
+
+                        }
+
+                        sio.on('chats', (chats) => 
+                        {
+
+                            for (const [key, value] of Object.entries(chats)) 
+                            {
+
+                                if (chats[key].identifier == m.chat_identifier) 
+                                {
+
+                                    chats[key].messages.forEach( (message) => { create_message(message.user, message.message); });
+
+                                }
+
+                            }
+
+                        });
+
+                        sio.on('broadcast_message', (message) => { if (message.chat_identifier == m.chat_identifier) { create_message(message.user, message.message); } });
+
+                        const message = document.getElementById('message_id');
+
+                        message.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); new_message(message.value); } });
+
+                    </script>
+
+                </div>
+
+            <% } %>
+
+        </section>
+    </main>
+
+    <script type="text/javascript" src="/javascript/scripts.js"></script>
+    
+</body>
+</html>

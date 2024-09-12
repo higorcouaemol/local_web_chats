@@ -1,0 +1,217 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&display=swap');
+
+* 
+{
+
+    margin          :                   0px;
+    padding         :                   0px;
+    font-family     : 'Poppins', sans-serif;
+    font-style      :                normal;
+    font-weight     :                   500;
+    color           :             #ffffff;
+    text-decoration :                  none;
+    box-sizing      :            border-box;
+
+}
+
+body { background-color: #020202; }
+
+main#chats 
+{
+
+    display         :      flex;
+    justify-content :    center;
+    align-items     :    center;
+    margin          : 200px 0px;
+
+}
+
+main#chats section#chats__center 
+{
+
+    padding          :   10px 25px 25px 25px;
+    background-color :             #101010;
+    box-shadow       : 0px 0px 3px #101010;
+    border-radius    :                   3px;
+
+}
+
+main#chats section#chats__center div#chats__center-list 
+{
+
+    display         :   flex;
+    justify-content : center;
+
+}
+
+main#chats section#chats__center div#chats__center-list div#chats__center-list__center div.chats__center-list__center-chat 
+{
+
+    padding          :             10px 15px;
+    width            :                 350px;
+    background-color :             #202020;
+    box-shadow       : 0px 0px 3px #202020;
+    border-radius    :                   3px;
+    display          :                  flex;
+    justify-content  :         space-between;
+    margin           :              15px 0px;
+
+}
+
+main#chats section#chats__center div#chats__center-list div#chats__center-list__center div.chats__center-list__center-chat p { font-size: 9pt; }
+
+main#chats section#chats__center div#chats__center-list div#chats__center-list__center div.chats__center-list__center-chat p:first-child  { opacity: 0.6; }
+
+main#chats section#chats__center div#chats__center-list div#chats__center-list__center div.chats__center-list__center-chat p:nth-child(2) { opacity: 0.3; }
+
+main#chats section#chats__center div#chats__center-join 
+{
+
+    display         :   flex;
+    justify-content : center;
+    margin-top      :   50px;
+
+}
+
+main#chats section#chats__center div#chats__center-join form input, main#chats section#chats__center div#chats__center-join form select, main#chats section#chats__center div#chats__center-join form button 
+{
+
+    display          :                 block;
+    outline          :                  none;
+    border           :                  none;
+    font-size        :                   9pt;
+    opacity          :                   0.8;
+    background-color :             #202020;
+    box-shadow       : 0px 0px 3px #202020;
+    border-radius    :                   3px;
+
+}
+
+
+main#chats section#chats__center div#chats__center-join form input, main#chats section#chats__center div#chats__center-join form select 
+{
+
+    padding-left :     10px;
+    margin       : 15px 0px;
+
+}
+
+main#chats section#chats__center div#chats__center-join form input 
+{
+
+    width  : 240px;
+    height :  38px;
+
+}
+
+main#chats section#chats__center div#chats__center-join form select 
+{
+
+    width  : 150px;
+    height :  38px;
+
+}
+
+main#chats section#chats__center div#chats__center-join form button 
+{
+
+    padding          :              0px 15px;
+    height           :                  35px;
+    margin           :    40px auto 0px auto;
+    cursor           :               pointer;
+    transition       :                  0.6s;
+
+}
+
+main#chats section#chats__center div#chats__center-join form button:hover 
+{
+
+    background-color :             #020202;
+    box-shadow       : 0px 0px 3px #020202;
+
+}
+
+main#chats section#chats__center div#chats__center-chat 
+{
+
+    padding          :   20px 25px 25px 25px;
+    background-color :             #020202;
+    box-shadow       : 0px 0px 3px #020202;
+    border-radius    :                   3px;
+    width            :                 500px;
+    height           :                 350px;
+    margin-top       :                  50px;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__i p 
+{
+
+    font-size  :    9pt;
+    opacity    :    0.6;
+    text-align : center;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__messages 
+{
+
+    overflow      :  auto;
+    height        : 230px;
+    padding-right :  25px;
+    margin-top    :  20px;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__messages div.chats__center-chat__messages-message 
+{
+
+    display         :  flex;
+    justify-content : start;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__messages div.chats__center-chat__messages-message div.chats__center-chat__messages-message__center
+{
+
+    padding          :  8px 12px;
+    background-color : #202020;
+    border-radius    :      10px;
+    margin           :   8px 0px;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__messages div.chats__center-chat__messages-message div.chats__center-chat__messages-message__center p 
+{
+
+    font-size : 9pt;
+    opacity   : 0.8;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__messages div.chats__center-chat__messages-message p span { opacity: 0.3; }
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__type
+{ 
+    
+    display         :   flex;
+    justify-content : center;
+
+}
+
+main#chats section#chats__center div#chats__center-chat div#chats__center-chat__type form input 
+{
+
+    outline          :                  none;
+    border           :                  none;
+    padding-left     :                  10px;
+    width            :                 400px;
+    height           :                  38px;
+    background-color :             #202020;
+    box-shadow       : 0px 0px 3px #202020;
+    border-radius    :                   3px;
+    font-size        :                   9pt;
+    opacity          :                   0.8;
+
+}
